@@ -1,14 +1,14 @@
 import { LightingFx } from './LightingFx';
-import { MapLighting } from '@/data/map/MapLighting';
+import { Lighting } from '@/engine/Lighting';
 
 export class LightingDirector {
-  private lighting: MapLighting;
+  private lighting: Lighting;
   private renderer: { onFrame: { subscribe: (callback: (time: number) => void) => void, unsubscribe: (callback: (time: number) => void) => void } };
   private gameSpeed: { value: number };
   private effects: LightingFx[];
   private onFrame: (time: number) => void;
 
-  constructor(lighting: MapLighting, renderer: { onFrame: { subscribe: (callback: (time: number) => void) => void, unsubscribe: (callback: (time: number) => void) => void } }, gameSpeed: { value: number }) {
+  constructor(lighting: Lighting, renderer: { onFrame: { subscribe: (callback: (time: number) => void) => void, unsubscribe: (callback: (time: number) => void) => void } }, gameSpeed: { value: number }) {
     this.lighting = lighting;
     this.renderer = renderer;
     this.gameSpeed = gameSpeed;
