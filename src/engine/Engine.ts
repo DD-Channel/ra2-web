@@ -22,6 +22,7 @@ import { HvaFile } from '../data/HvaFile';
 import { MixinRulesType } from '../game/ini/MixinRulesType';
 import type { AppLogger as AppLoggerType } from '../util/Logger'; // Changed to lowercase, aliased for clarity
 import type { DataStream } from '../data/DataStream'; // For VFS openFile result stream
+import { VirtualFile } from '@/data/vfs/VirtualFile';
 
 export enum EngineType {
   AutoDetect = 0,
@@ -59,20 +60,20 @@ export class Engine {
 
   public static supportedMapTypes = ["mpr", "map"];
 
-  public static images = new LazyResourceCollection((data: DataStream) => new ShpFile(data));
-  public static voxels = new LazyResourceCollection((data: DataStream) => new VxlFile(data));
-  public static voxelAnims = new LazyResourceCollection((data: DataStream) => new HvaFile(data));
-  public static sounds = new LazyResourceCollection((data: DataStream) => new WavFile(data));
+  public static images = new LazyResourceCollection((file: VirtualFile) => new ShpFile(file));
+  public static voxels = new LazyResourceCollection((file: VirtualFile) => new VxlFile(file));
+  public static voxelAnims = new LazyResourceCollection((file: VirtualFile) => new HvaFile(file));
+  public static sounds = new LazyResourceCollection((file: VirtualFile) => new WavFile(file));
   public static themes = new LazyAsyncResourceCollection(
-    (data: DataStream) => new Mp3File(data),
+    (file: VirtualFile) => new Mp3File(file),
     false,
   );
   public static taunts = new LazyAsyncResourceCollection(
     async (fileHandle: any) => new WavFile(new Uint8Array(await fileHandle.arrayBuffer()) as unknown as DataStream) // Needs review for DataStream conversion
   );
-  public static iniFiles = new LazyResourceCollection((data: DataStream) => new IniFile(data));
-  public static tileData = new LazyResourceCollection((data: DataStream) => new TmpFile(data));
-  public static palettes = new LazyResourceCollection((data: DataStream) => new Palette(data));
+  public static iniFiles = new LazyResourceCollection((file: VirtualFile) => new IniFile(file));
+  public static tileData = new LazyResourceCollection((file: VirtualFile) => new TmpFile(file));
+  public static palettes = new LazyResourceCollection((file: VirtualFile) => new Palette(file));
 
   public static theaters = new Map<TheaterType, Theater>();
 
