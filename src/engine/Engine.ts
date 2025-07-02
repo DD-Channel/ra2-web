@@ -31,6 +31,18 @@ export enum EngineType {
   YurisRevenge = 4,
 }
 
+export interface TheaterSettings {
+  type: TheaterType;
+  theaterIni: string;
+  mixes: string[];
+  extension: string;
+  newTheaterChar: string;
+  isoPaletteName: string;
+  unitPaletteName: string;
+  overlayPaletteName: string;
+  libPaletteName: string;
+}
+
 export class Engine {
   public static readonly UI_ANIM_SPEED = 2;
 
