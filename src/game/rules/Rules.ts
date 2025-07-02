@@ -21,16 +21,9 @@ import { PowerupsRules } from "@/game/rules/PowerupsRules";
 import { mpAllowedColors } from "@/game/rules/mpAllowedColors";
 import { isNotNullOrUndefined } from "@/util/typeGuard";
 import { Weapon } from "@/game/Weapon";
-import { IniSection } from "@/data/IniSection";
+import { IniFile } from "@/data/IniFile";
+import { AppLogger } from "@/util/Logger";
 
-interface IniFile {
-  getSection(name: string): IniSection | undefined;
-  getOrCreateSection(name: string): IniSection;
-}
-
-interface Logger {
-  debug(message: string): void;
-}
 
 interface ObjectRules {
   deathWeapon?: string;
@@ -51,7 +44,7 @@ interface SpecialFlags {
 
 export class Rules {
   private ini: IniFile;
-  private logger?: Logger;
+  private logger?: typeof AppLogger;
 
   // Type maps
   private buildingTypes = new Map<number, string>();
@@ -105,7 +98,7 @@ export class Rules {
   private cachedWeaponRules = new Map<string, WeaponRules>();
   private cachedProjectileRules = new Map<string, ProjectileRules>();
 
-  constructor(ini: IniFile, logger?: Logger) {
+  constructor(ini: IniFile, logger?: typeof AppLogger) {
     this.ini = ini;
     this.logger = logger;
     this.init();
