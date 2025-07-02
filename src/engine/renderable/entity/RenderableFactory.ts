@@ -26,6 +26,8 @@ import { ShipWakeTrailPlugin } from "@/engine/renderable/entity/plugin/ShipWakeT
 import { ObjectCloakPlugin } from "@/engine/renderable/entity/plugin/ObjectCloakPlugin";
 import { Debris } from "@/engine/renderable/entity/Debris";
 import { ShpAggregator } from "@/engine/renderable/builder/ShpAggregator";
+import { UnitSelection } from "@/game/gameobject/selection/UnitSelection";
+import { Rules } from "@/game/rules/Rules";
 
 // Type definitions for interfaces and classes
 interface Position {
@@ -67,25 +69,10 @@ interface LocalPlayer {
   // Define properties as needed
 }
 
-interface UnitSelection {
-  getOrCreateSelectionModel(entity: GameEntity): any;
-}
-
 interface Alliances {
   // Define properties as needed
 }
 
-interface Rules {
-  general: {
-    paradrop: any;
-  };
-  audioVisual: {
-    chronoSparkle1: any;
-  };
-  combatDamage: {
-    ivanIconFlickerRate: number;
-  };
-}
 
 interface Art {
   getObject(name: string, type: ObjectType): any;
