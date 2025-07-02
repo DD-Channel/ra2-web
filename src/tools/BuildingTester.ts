@@ -246,12 +246,14 @@ export class BuildingTester {
 
   static setDamageType(damageType: DamageType | null): void {
     if (!this.currentBuilding) return;
-    
-    this.currentBuilding.healthTrait.health = damageType
+
+    var health = damageType
       ? 100 * (damageType === DamageType.CONDITION_YELLOW
           ? this.rules.audioVisual.conditionYellow
           : this.rules.audioVisual.conditionRed)
       : 100;
+    this.currentBuilding.healthTrait.health = health;
+    console.log(`[BuildingTester] damageType=${damageType}; health=${health}`);
   }
 
   static setActiveState(active: boolean): void {
