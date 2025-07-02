@@ -20,7 +20,7 @@ import * as stringUtils from '../util/string';
 import { MapList } from './MapList';
 import { HvaFile } from '../data/HvaFile';
 import { MixinRulesType } from '../game/ini/MixinRulesType';
-import type { AppLogger as AppLoggerType } from '../util/Logger'; // Changed to lowercase, aliased for clarity
+import type { AppLogger } from '../util/Logger'; // Changed to lowercase, aliased for clarity
 import type { DataStream } from '../data/DataStream'; // For VFS openFile result stream
 import { VirtualFile } from '@/data/vfs/VirtualFile';
 
@@ -254,7 +254,7 @@ export class Engine {
     return rfsInstance;
   }
 
-  static async initVfs(rfsInstance: RealFileSystem | undefined, logger: AppLoggerType): Promise<VirtualFileSystem> {
+  static async initVfs(rfsInstance: RealFileSystem | undefined, logger: typeof AppLogger): Promise<VirtualFileSystem> {
     this.vfs = new VirtualFileSystem(rfsInstance, logger);
     this.iniFiles.setVfs(this.vfs);
     this.palettes.setVfs(this.vfs);
