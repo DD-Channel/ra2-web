@@ -21,14 +21,11 @@ import { PowerupsRules } from "@/game/rules/PowerupsRules";
 import { mpAllowedColors } from "@/game/rules/mpAllowedColors";
 import { isNotNullOrUndefined } from "@/util/typeGuard";
 import { Weapon } from "@/game/Weapon";
+import { IniSection } from "@/data/IniSection";
 
 interface IniFile {
   getSection(name: string): IniSection | undefined;
   getOrCreateSection(name: string): IniSection;
-}
-
-interface IniSection {
-  entries: Map<string, any>;
 }
 
 interface Logger {
