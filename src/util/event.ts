@@ -1,5 +1,5 @@
 // 事件监听器函数类型
-type EventListener<TSource = any, TData = any> = (data: TData, source: TSource) => void;
+export type EventListener<TSource = any, TData = any> = (data: TData, source: TSource) => void;
 
 // 事件接口
 interface IEvent<TSource = any, TData = any> {
