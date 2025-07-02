@@ -2,7 +2,7 @@ import { Color } from '@/util/Color';
 import { ObjectType } from '@/engine/type/ObjectType';
 import { Traits } from '@/game/Traits';
 import { fnv32a } from '@/util/math';
-import { GameObject } from '@/game/GameObject';
+import { GameObject } from '@/game/gameobject/GameObject';
 import { Country } from '@/game/Country';
 
 interface Production {
